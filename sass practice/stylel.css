@@ -1,0 +1,106 @@
+.operator {
+  padding: true;
+  padding: false;
+  padding: true;
+  padding: true;
+  padding: true;
+  padding: true;
+  padding: true;
+  padding: false;
+  padding: true;
+  padding: false;
+  padding: 30px;
+}
+
+.half-width {
+  width: 600px;
+}
+
+.one-third-width {
+  width: 400px;
+}
+
+.one-forth-width {
+  width: 300px;
+}
+
+.inbuild-function-number {
+  margin: 20px;
+  margin: 4px;
+  margin: 3px;
+  margin: 3;
+  margin: 200%;
+  margin: 0.7650881851;
+  margin: true;
+  margin: "px";
+}
+
+.inbuild-function-string {
+  margin: "Arial";
+  margin: Arial;
+  margin: arial;
+  margin: ARIAL;
+  margin: 1;
+  margin: "niygood morningu";
+  margin: 12;
+  margin: "ood";
+  margin: ut8pfqw;
+}
+
+.content-directive {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.if-loop {
+  color: blue;
+}
+
+.for-loop-1 {
+  width: 100px;
+}
+
+.for-loop-2 {
+  width: 200px;
+}
+
+.for-loop-3 {
+  width: 300px;
+}
+
+.normal {
+  font-weight: normal;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-weight: italic;
+}
+
+.first {
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.second {
+  font-weight: italic;
+  font-size: 15px;
+}
+
+.one {
+  font-weight: one;
+  font-size: 10px;
+}
+
+.two {
+  font-weight: two;
+  font-size: 20px;
+}
+
+.three {
+  font-weight: three;
+  font-size: 30px;
+}/*# sourceMappingURL=stylel.css.map */

@@ -1,0 +1,573 @@
+@import "../src/variables";
+@import "../src/mixins";
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: $gray-dark;
+}
+a {
+  color: $blue-primary;
+  text-decoration: none;
+  &:hover {
+    color: $blue-light;
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+}
+
+/*--------------------------------------------------------------
+# Sections
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+.section-header {
+  text-align: center;
+  padding-bottom: 40px;
+  h2 {
+    @include font(13px, 700);
+    letter-spacing: 1px;
+    margin: 0;
+    color: $blue-primary;
+    text-transform: uppercase;
+  }
+  p {
+    @include font(38px, 700);
+    margin: 10px 0 0 0;
+    padding: 0;
+    line-height: 42px;
+    color: $navy;
+    @media (max-width: 768px) {
+      @include font(28px, 700);
+      line-height: 32px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Breadcrumbs
+--------------------------------------------------------------*/
+.breadcrumbs {
+  padding: 15px 0;
+  background: $navy;
+  min-height: 40px;
+  margin-top: 82px;
+  color: $white;
+  @media (max-width: 992px) {
+    margin-top: 57px;
+  }
+  h2 {
+    @include font(28px, 500);
+  }
+  ol {
+    @include font(14px, 400);
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0 0 10px 0;
+    margin: 0;
+
+    a {
+      color: $white;
+      transition: 0.3s;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    li + li {
+      padding-left: 10px;
+      &::before {
+        display: inline-block;
+        padding-right: 10px;
+        color: $light-blue-accent;
+        content: "/";
+      }
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  @include position(fixed, 0, 15px, 15px, 0);
+  @include background-radius($blue-primary, 4px);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 99999;
+  width: 40px;
+  height: 40px;
+  transition: all 0.4s;
+  i {
+    @include font(24px, 400);
+    color: $white;
+    line-height: 0;
+  }
+  &:hover {
+    background: $blue-bg;
+    color: $white;
+  }
+  &.active {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/*--------------------------------------------------------------
+# Disable aos animation delay on mobile devices
+--------------------------------------------------------------*/
+@media screen and (max-width: 768px) {
+  [data-aos-delay] {
+    transition-delay: 0 !important;
+  }
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.header {
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 20px 0;
+  background: $white;
+  .header-scrolled {
+    background: $white;
+    padding: 15px 0;
+    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+  }
+  .logo {
+    line-height: 0;
+    img {
+      max-height: 40px;
+      margin-right: 6px;
+    }
+    span {
+      @include font(30px, 700);
+      letter-spacing: 1px;
+      color: $navy;
+      font-family: "Nunito", sans-serif;
+      margin-top: 3px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  padding: 0;
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    align-items: center;
+  }
+  li {
+    @include position(relative, 0, 0, 0, 0);
+  }
+  a,
+  a:focus {
+    @include font(16px, 700);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 10px 30px;
+    font-family: "Nunito", sans-serif;
+    color: $royal-blue;
+    white-space: nowrap;
+    transition: 0.3s;
+    i {
+      @include font(12px, 400);
+      line-height: 0;
+      margin-left: 5px;
+    }
+  }
+  a:hover,
+  .active,
+  .active:focus,
+  li:hover > a {
+    color: $blue-primary;
+  }
+  .getstarted,
+  .getstarted:focus {
+    @include background-radius($blue-primary, 4px);
+    padding: 8px 20px;
+    margin-left: 30px;
+    color: $white;
+    &:hover,
+    &:hover {
+      color: $white;
+      background: $blue-accent;
+    }
+  }
+}
+
+/**
+* Mobile Navigation 
+*/
+.mobile-nav-toggle {
+  @include font(28px, 400);
+  color: $navy;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+  .bi-x {
+    color: $white;
+  }
+}
+@media (max-width: 1200px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+.navbar-mobile {
+  @include position(fixed, 0, 0, 0, 0);
+  overflow: hidden;
+  background: rgba(1, 22, 61, 0.9);
+  transition: 0.3s;
+  .mobile-nav-toggle {
+    @include position(absolute, 15px, 15px, 0, 0);
+  }
+  ul {
+    @include position(absolute, 55px, 15px, 15px, 15px);
+    @include background-radius($white, 10px);
+    padding: 10px 0;
+    display: block;
+    overflow-y: auto;
+    transition: 0.3s;
+  }
+  a,
+  a:focus {
+    @include font(15px, 400);
+    padding: 10px 20px;
+    color: $navy;
+  }
+  a:hover,
+  .active,
+  li:hover > a {
+    color: $blue-primary;
+  }
+  .getstarted,
+  .getstarted:focus {
+    margin: 15px;
+  }
+}
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: url(../src/assets/img/hero-bg.png) top center no-repeat;
+  background-size: cover;
+  h1 {
+    @include font(48px, 700);
+    margin: 0;
+    color: $navy;
+  }
+  h2 {
+    @include font(26px, 400);
+    color: $gray-dark;
+    margin: 15px 0 0 0;
+  }
+
+  .btn-get-started {
+    @include background-radius($blue-primary, 4px);
+    margin-top: 30px;
+    line-height: 0;
+    padding: 15px 40px;
+    transition: 0.5s;
+    color: $white;
+    box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
+    span {
+      @include font(16px, 600);
+      font-family: "Nunito", sans-serif;
+      letter-spacing: 1px;
+    }
+    i {
+      @include font(18px, 400);
+      margin-left: 5px;
+      transition: 0.3s;
+    }
+    &:hover i {
+      transform: translateX(5px);
+    }
+  }
+  .hero-img {
+    text-align: right;
+  }
+  @media (min-width: 1024px) {
+    background-attachment: fixed;
+  }
+
+  @media (max-width: 991px) {
+    height: auto;
+    padding: 120px 0 60px 0;
+    .hero-img {
+      text-align: center;
+      margin-top: 80px;
+      img {
+        width: 80%;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    h1 {
+      @include font(32px, 400);
+    }
+    h2 {
+      @include font(24px, 400);
+    }
+    .hero-img img {
+      width: 100%;
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+
+.about {
+  .content {
+    background-color: $lightest-bg;
+    padding: 40px;
+  }
+  h3 {
+    @include font(14px, 700);
+    color: $blue-primary;
+    text-transform: uppercase;
+  }
+  h2 {
+    @include font(24px, 700);
+    color: $navy;
+  }
+  p {
+    margin: 15px 0 30px 0;
+    line-height: 24px;
+  }
+  .btn-read-more {
+    @include background-radius($blue-primary, 4px);
+    line-height: 0;
+    padding: 15px 40px;
+    transition: 0.5s;
+    color: $white;
+    box-shadow: 0px 5px 25px rgba(65, 84, 241, 0.3);
+    span {
+      @include font(16px, 600);
+      font-family: "Nunito", sans-serif;
+      letter-spacing: 1px;
+    }
+    i {
+      @include font(18px, 400);
+      margin-left: 5px;
+      transition: 0.3s;
+    }
+    &:hover i {
+      transform: translateX(5px);
+    }
+  }
+}
+
+/*--------------------------------------------------------------
+# Values
+--------------------------------------------------------------*/
+.values {
+  .box {
+    padding: 30px;
+    box-shadow: 0px 0 5px rgba(1, 41, 112, 0.08);
+    text-align: center;
+    transition: 0.3s;
+    height: 100%;
+    img {
+      padding: 30px 50px;
+      transition: 0.5s;
+      transform: scale(1.1);
+    }
+    h3 {
+      @include font(24px, 700);
+      color: $navy;
+      margin-bottom: 18px;
+    }
+    &:hover {
+      box-shadow: 0px 0 30px rgba(1, 41, 112, 0.08);
+      img {
+        transform: scale(1);
+      }
+    }
+  }
+}
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.footer {
+  @include font(14px, 400);
+  background: $lightest-bg;
+  padding: 0 0 30px 0;
+  .footer-newsletter {
+    @include border(1px, 0, 0, 0, $lightest-blue);
+    padding: 50px 0;
+    background: $lightest-bg;
+    h4 {
+      @include font(24px, 700);
+      margin: 0 0 10px 0;
+      padding: 0;
+      line-height: 1;
+      color: $navy;
+    }
+
+    form {
+      @include border(1px, 1px, 1px, 1px, $lightest-blue);
+      @include background-radius($white, 4px);
+      @include position(relative, 0, 0, 0, 0);
+      margin-top: 20px;
+      padding: 6px 10px;
+      input[type="email"] {
+        @include border(0, 0, 0, 0, $lightest-blue);
+        padding: 8px;
+        width: calc(100% - 140px);
+      }
+
+      input[type="submit"] {
+        @include font(16px, 400);
+        @include position(absolute, 0, 0, 0, auto);
+        @include background-radius($blue-primary, 4px);
+        padding: 0 30px;
+        margin: 3px;
+        color: $white;
+        transition: 0.3s;
+      }
+
+      input[type="submit"]:hover {
+        background: $blue-accent;
+      }
+    }
+  }
+
+  .footer-top {
+    background: white url(../src/assets/img/footer-bg.png) no-repeat right top;
+    background-size: contain;
+    @include border(1px, 0, 1px, 0, $lightest-blue);
+    padding: 60px 0 30px 0;
+    @media (max-width: 992px) {
+      background-position: center bottom;
+    }
+    .footer-info {
+      margin-bottom: 30px;
+      .logo {
+        line-height: 0;
+        margin-bottom: 15px;
+      }
+
+      .logo img {
+        max-height: 40px;
+        margin-right: 6px;
+      }
+
+      .logo span {
+        @include font(30px, 700);
+        letter-spacing: 1px;
+        color: $navy;
+        font-family: "Nunito", sans-serif;
+        margin-top: 3px;
+      }
+
+      p {
+        @include font(14px, 400);
+        line-height: 24px;
+        margin-bottom: 0;
+        font-family: "Nunito", sans-serif;
+      }
+    }
+    .social-links {
+      a {
+        @include font(20px, 400);
+        display: inline-block;
+        color: rgba(1, 41, 112, 0.5);
+        line-height: 0;
+        margin-right: 10px;
+        transition: 0.3s;
+        &:hover {
+          color: $navy;
+        }
+      }
+    }
+    h4 {
+      @include font(16px, bold);
+      @include position(relative, 0, 0, 0, 0);
+      color: $navy;
+      text-transform: uppercase;
+
+      padding-bottom: 12px;
+    }
+
+    .footer-links {
+      margin-bottom: 30px;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        i {
+          @include font(12px, 400);
+          padding-right: 2px;
+          color: $light-blue;
+          line-height: 0;
+        }
+        li {
+          padding: 10px 0;
+          display: flex;
+          align-items: center;
+          &:first-child {
+            padding-top: 0;
+          }
+        }
+
+        a {
+          color: $royal-blue;
+          transition: 0.3s;
+          display: inline-block;
+          line-height: 1;
+          &:hover {
+            color: $blue-primary;
+          }
+        }
+      }
+    }
+    .footer-contact p {
+      line-height: 26px;
+    }
+  }
+  .copyright {
+    text-align: center;
+    padding-top: 30px;
+    color: $navy;
+  }
+  .credits {
+    @include font(13px, 400);
+    padding-top: 10px;
+    text-align: center;
+    color: $navy;
+  }
+}

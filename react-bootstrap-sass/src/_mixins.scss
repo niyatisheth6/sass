@@ -1,0 +1,26 @@
+@mixin font($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+@mixin position($position, $top, $right, $bottom, $left) {
+  position: $position;
+  @if $position != "relative" {
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+  }
+}
+
+@mixin border($top, $right, $bottom, $left, $color) {
+  border-top: $top;
+  border-right: $right;
+  border-bottom: $bottom;
+  border-left: $left;
+  border-style: solid;
+  border-color: $color;
+}
+@mixin background-radius($bgcolor, $radius) {
+  background-color: $bgcolor;
+  border-radius: $radius;
+}

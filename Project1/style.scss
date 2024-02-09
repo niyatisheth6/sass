@@ -1,0 +1,169 @@
+@import "./variable";
+@import "./mixins";
+
+@use "corners" as *;
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: auto;
+  color: $gray-dark;
+  position: relative;
+}
+.container {
+  max-width: 1350px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+.flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: $navy;
+  .header {
+    @extend .flex-box;
+    justify-content: space-between;
+  }
+  .logo {
+    text-decoration: none;
+    color: $white;
+    font-size: 35px;
+    font-weight: 600;
+  }
+  @media (max-width: 768px) {
+    nav {
+      display: none;
+    }
+  }
+  ul {
+    list-style-type: none;
+    li {
+      a {
+        color: $white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 20px;
+        padding: 10px;
+        &:not(:last-child) {
+          margin-right: 35px;
+        }
+        &:hover {
+          color: $black;
+          background-color: $white;
+        }
+      }
+    }
+  }
+}
+.desctiption {
+  margin: 30px 0;
+  font-size: 30px;
+}
+.title {
+  margin: 30px 0;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 45px;
+  background-color: $navy;
+  color: $white;
+  border-radius: 10px;
+  @include title(lg, 35px, 2);
+  @include title(md, 30px, 3);
+  @include title(sm, 25px, 4);
+}
+//  home page
+
+.hero {
+  @extend .flex-box;
+  align-items: normal;
+  margin: 20px 0;
+  gap: 30px;
+  flex-wrap: wrap;
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+  @for $i from 1 through 6 {
+    .card-#{$i} {
+      .card-content {
+        @include card-bgcolor($i);
+        color: $black;
+        padding: 2px 16px;
+      }
+    }
+  }
+}
+.hero-btn {
+  @extend .flex-box;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 50px 0;
+  button {
+    font-size: 40px;
+    border: 0;
+    cursor: pointer;
+    padding: 10px 20px;
+  }
+  @for $i from 1 through 4 {
+    .btn#{$i} {
+      @include btn(xl, $i, 1);
+      @include btn(lg, $i, 2);
+      @include btn(md, $i, 3);
+      @include btn(sm, $i, 1);
+      @include btn(null, $i, 2);
+    }
+  }
+}
+.box {
+  @extend .flex-box;
+  gap: 30px;
+  margin: 30px 0;
+
+  @for $i from 1 through 3 {
+    .box-#{$i} {
+      @include box($i, 800, 800);
+      @include common-media-query(xl) {
+        $dimensions: one-third(800, 800);
+        width: nth($dimensions, 1);
+        height: nth($dimensions, 2);
+      }
+      @include common-media-query(md) {
+        $dimensions: one-forth(800, 800);
+        width: nth($dimensions, 1);
+        height: nth($dimensions, 2);
+      }
+    }
+  }
+}
+
+.newbox {
+  @extend .flex-box;
+  gap: 30px;
+  margin: 30px 0;
+  .new-box {
+    width: 200px;
+    height: 200px;
+    background: $light-blue-accent;
+    $box-count: 3;
+    @if $box-count == 3 {
+      margin: 30px;
+    } @else if $box-count == 4 {
+      margin: 20px;
+    } @else {
+      margin: 10px;
+    }
+  }
+}

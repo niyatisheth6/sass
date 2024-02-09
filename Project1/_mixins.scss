@@ -1,0 +1,65 @@
+@import "./variable";
+
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  3xl: 2000px,
+);
+$color: $blue-bg, $azure-blue, $blue-primary, $light-blue-accent, $lightest-blue,
+  $navy, $lightest-bg, $blue-bg, $azure-blue, $blue-primary, $light-blue-accent,
+  $lightest-blue, $navy, $lightest-bg;
+
+@mixin common-media-query($breakpoint) {
+  $max-width: map-get($breakpoints, $breakpoint);
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+
+@mixin title($breakpoint, $font-size, $index) {
+  @include common-media-query($breakpoint) {
+    background-color: nth($color, $index);
+    font-size: $font-size;
+  }
+}
+
+@mixin card-bgcolor($index) {
+  background-color: nth($color, $index);
+}
+
+@mixin btn($breakpoint: null, $index, $add) {
+  @if $breakpoint {
+    @include common-media-query($breakpoint) {
+      background-color: nth($color, $index + $add);
+    }
+  } @else {
+    background-color: nth($color, $index);
+  }
+}
+
+@function half($w, $h) {
+  $width: $w/2 + px;
+  $height: $h/2 + px;
+
+  @return $width, $height;
+}
+@function one-third($w, $h) {
+  $width: $w/3 + px;
+  $height: $h/3 + px;
+  @return $width, $height;
+}
+@function one-forth($w, $h) {
+  $width: $w/4 + px;
+  $height: $h/4 + px;
+  @return $width, $height;
+}
+
+@mixin box($index, $width, $height) {
+  background-color: nth($color, $index);
+  $dimensions: half(800, 800);
+  width: nth($dimensions, 1);
+  height: nth($dimensions, 2);
+}
